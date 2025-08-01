@@ -1,5 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Add authentication services
+builder.Services.AddAuthentication("CookieAuth")
+    .AddCookie("CookieAuth", options =>
+    {
+        options.LoginPath = "/Account/Login";
+    });
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -16,9 +23,22 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.Use(async (context, next) =>
+{
+    if (!context.User.Identity.IsAuthenticated &&
+        !context.Request.Path.StartsWithSegments("/Account/Login"))
+    {
+        context.Response.Redirect("/Account/Login");
+        return;
+    }
+    await next();
+});
+
 
 app.MapControllerRoute(
     name: "default",
