@@ -8,8 +8,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy project files and restore dependencies
-COPY ["YourProjectName.csproj", "./"]
-RUN dotnet restore "./YourProjectName.csproj"
+COPY ["MyWebApp.csproj", "./"]
+RUN dotnet restore "./MyWebApp.csproj"
 
 # Copy all files and build
 COPY . .
