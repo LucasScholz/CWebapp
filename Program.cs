@@ -25,8 +25,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapStaticAssets();
+app.UseStaticFiles();
 
 app.Use(async (context, next) =>
 {
