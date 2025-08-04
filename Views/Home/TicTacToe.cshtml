@@ -2,14 +2,17 @@
     ViewData["Title"] = "Tic Tac Toe";
 }
 
-<h1>@ViewData["Title"]</h1>
 
 <style>
+
+    body{
+        margin: 0;
+    }
+
     .board {
         display: grid;
         grid-template-columns: repeat(3, 100px);
         grid-gap: 5px;
-        margin-top: 20px;
     }
 
     .cell {
@@ -24,12 +27,19 @@
         border: 1px solid #ccc;
     }
 
-        .cell:hover {
-            background-color: #e0e0e0;
-        }
+    .cell:hover {
+        background-color: #e0e0e0;
+    }
+
+
 </style>
 
-<div class="board" id="board"></div>
+
+<body class="container-fluid bg-dark">
+    <div class="h1 text-white">Tic Tac Toe</div>
+    <div class="board container" id="board"></div>
+</body>
+
 <p id="status"></p>
 
 <script>const board = document.getElementById("board");
