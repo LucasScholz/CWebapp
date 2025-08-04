@@ -25,6 +25,7 @@
         background: #f2f2f2;
         cursor: pointer;
         border: 1px solid #ccc;
+        color: black;
     }
 
     .cell:hover {
@@ -37,10 +38,13 @@
 
 <body class="container-fluid bg-dark">
     <div class="h1 text-white">Tic Tac Toe</div>
-    <div class="board container" id="board"></div>
+    <div class="board container text-dark" id="board"></div>
 </body>
 
-<p id="status"></p>
+<p class = "h2" id="status"></p>
+<div id="restartButton" style="display:none;">
+    <a href="/home/tictactoe" type="button" class="btn btn-primary">Nochmal spielen!</a>
+</div>
 
 <script>const board = document.getElementById("board");
     const status = document.getElementById("status");
@@ -58,14 +62,16 @@
         for (const [a, b, c] of winCombos) {
             if (cells[a] && cells[a] === cells[b] && cells[b] === cells[c]) {
                 gameOver = true;
-                status.textContent = `${cells[a]} wins!`;
+                status.textContent = `${cells[a]} hat gewonnen!`;
+                document.getElementById("restartButton").style.display = "block";
                 return;
             }
         }
 
         if (!cells.includes("")) {
             gameOver = true;
-            status.textContent = "It's a draw!";
+            status.textContent = "Unentschieden!";
+            document.getElementById("restartButton").style.display = "block";
         }
     }
 
