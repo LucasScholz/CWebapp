@@ -1,0 +1,93 @@
+@{
+    ViewData["Title"] = "Coin Flip";
+}
+
+<style>
+    .container {
+        text-align: center;
+        margin-top: 50px;
+        color: white;
+        font-family: Arial, sans-serif;
+        padding: 30px;
+        border-radius: 10px;
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1.2em;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #6366f1;
+        color: white;
+        margin-top: 20px;
+    }
+
+    img {
+        margin-top: 20px;
+        width: 150px;
+        height: 150px;
+        user-select: none;
+    }
+
+    .result-text {
+        font-size: 1.5em;
+        margin-top: 15px;
+        height: 30px;
+    }
+</style>
+
+<div class="container">
+    <h1>Werfen Sie eine Münze!</h1>
+    <button id="flipBtn">Münze werfen</button>
+    <div class="result-text" id="resultText"></div>
+    <img id="coinImage" src="" alt="Münzbild" style="display:none;" />
+</div>
+
+<div class="container mt-3">
+    <h4>Münzwurf-Historie:</h4>
+    <ul id="historyList" class="list-group list-group-flush"></ul>
+</div>
+
+<script>const flipBtn = document.getElementById("flipBtn");
+    const resultText = document.getElementById("resultText");
+    const coinImage = document.getElementById("coinImage");
+    const historyList = document.getElementById('historyList');
+
+    const flipHistory = [];
+    const maxDepth = 100;
+
+    const images = {
+        'K': '/head.png',
+        'Z': '/number.png'
+    };
+
+    function updateHistory() {
+        historyList.innerHTML = '';
+        flipHistory.forEach((flip, idx) => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.textContent = `Wurf ${idx + 1}: ${flip === 'K' ? 'Kopf' : 'Zahl'}`;
+            historyList.appendChild(li);
+        });
+    }
+
+    flipBtn.addEventListener("click", () => {
+        if (flipHistory.length >= maxDepth) {
+            alert("Maximale Anzahl Würfe erreicht!");
+            return;
+        }
+
+        const isHead = Math.random() < 0.5;
+        const flip = isHead ? 'K' : 'Z';
+
+        coinImage.src = images[flip];
+        coinImage.style.display = "inline-block";
+        resultText.textContent = flip === 'K' ? 'Kopf!' : 'Zahl!';
+
+        flipHistory.push(flip);
+        updateHistory();
+    });</script>
