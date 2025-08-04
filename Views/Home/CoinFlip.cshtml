@@ -1,5 +1,5 @@
-@{
-    ViewData["Title"] = "Muenzwurf";
+﻿@{
+    ViewData["Title"] = "Münzwurf";
 }
 
 <style>
@@ -40,14 +40,14 @@
 </style>
 
 <div class="container">
-    <div class="h1">Werfen Sie eine Muenze!</div>
-    <button type="button" id="flipBtn">Muenze werfen</button>
+    <div class="h1">Werfen Sie eine Münze!</div>
+    <button type="button" id="flipBtn">Münze werfen</button>
     <div class="result-text" id="resultText"></div>
-    <img id="coinImage" src="" alt="Muenzbild" style="display:none;" />
+    <img id="coinImage" src="" alt="Münzbild" style="display:none;" />
 </div>
 
 <div class="container mt-3">
-    <h4>Muenzwurf-Historie:</h4>
+    <h4>Münzwurf-Historie:</h4>
     <ul id="historyList" class="list-group list-group-flush"></ul>
 </div>
 
@@ -76,7 +76,7 @@
 
     flipBtn.addEventListener("click", () => {
         if (flipHistory.length >= maxDepth) {
-            alert("Maximale Anzahl Wuerfe erreicht!");
+            alert("Maximale Anzahl Würfe erreicht!");
             return;
         }
 
