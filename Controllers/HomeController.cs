@@ -23,6 +23,7 @@ public class HomeController : Controller
         return View();
     }
 
+
     public IActionResult SnakeGame()
     {
         return View();

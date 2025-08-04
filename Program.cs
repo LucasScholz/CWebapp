@@ -43,5 +43,11 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapFallback(context =>
+{
+    context.Response.Redirect("/home/error");
+    return Task.CompletedTask;
+});
+
 
 app.Run();
